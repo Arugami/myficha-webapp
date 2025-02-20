@@ -1,8 +1,8 @@
 import React from 'react';
 import { User, Gamepad2, UserPlus } from 'lucide-react';
-import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
-import { Separator } from "@/components/ui/separator";
-import { ScrollArea } from "@/components/ui/scroll-area";
+import { Avatar, AvatarImage, AvatarFallback } from "@/app/_components/ui/avatar";
+import { Separator } from "@/app/_components/ui/separator";
+import { ScrollArea } from "@/app/_components/ui/scroll-area";
 
 interface Friend {
   id: string;

@@ -1,7 +1,7 @@
 'use client';
 
 import { useQuery } from '@tanstack/react-query';
-import type { Player, Match } from '../types/dashboard';
+import type { Player, Match } from '@/types';
 
 interface DashboardData {
   playerStats: Player | null;
@@ -114,8 +114,6 @@ export const useDashboardData = () => {
     refetchOnWindowFocus: false,
     retry: 1,
     refetchInterval: false,
-    suspense: false,
-    useErrorBoundary: false,
   });
 
   console.log('Dashboard Data:', {

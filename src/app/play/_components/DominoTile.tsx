@@ -8,6 +8,7 @@ interface DominoTileProps {
   isVertical?: boolean;
   onClick?: () => void;
   isPlayable?: boolean;
+  isSelected?: boolean;
 }
 
 const DominoTile: React.FC<DominoTileProps> = ({
@@ -15,10 +16,11 @@ const DominoTile: React.FC<DominoTileProps> = ({
   bottomValue,
   isVertical = false,
   onClick,
-  isPlayable = true
+  isPlayable = true,
+  isSelected = false
 }) => {
   const renderDots = (value: number) => {
-    const dots = [];
+    const dots: JSX.Element[] = [];
     const positions = {
       1: ['center'],
       2: ['top-right', 'bottom-left'],
@@ -70,6 +72,7 @@ const DominoTile: React.FC<DominoTileProps> = ({
         relative cursor-pointer transform transition-all duration-200 ease-in-out overflow-hidden select-none
         ${isVertical ? 'h-32 w-16' : 'w-32 h-16'}
         ${isPlayable ? 'hover:scale-105 hover:-translate-y-1 hover:rotate-1' : 'opacity-50 cursor-not-allowed'}
+        ${isSelected ? 'ring-4 ring-yellow-400 scale-105 -translate-y-1' : ''}
         ${onClick ? 'cursor-pointer' : 'cursor-default'}
         group rounded-lg
       `}

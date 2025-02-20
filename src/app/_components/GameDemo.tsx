@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { Play, Pause, SkipBack, SkipForward } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { Button } from '@/app/_components/ui/button';
 
 interface GameDemoProps {
   isPlaying: boolean;

@@ -3,8 +3,8 @@
 import React from 'react';
 import { Trophy, Star, Clock, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
-import { Button } from '@/components/ui/button';
-import type { Player } from '@/types/dashboard';
+import { Button } from '@/app/_components/ui/button';
+import type { Player } from '@/types';
 
 const demoPlayers: Player[] = [
   {
@@ -147,10 +147,10 @@ export const GlobalLeaderboardPreview = () => {
                 <span className="text-lg">{player.country}</span>
               </div>
               <div className="col-span-3 md:col-span-2 text-right text-gray-400 group-hover:text-white transition-colors pr-2">
-                {player.statistics.totalMatches}
+                {player.statistics?.totalMatches || 0}
               </div>
               <div className="col-span-3 md:col-span-2 text-right font-medium group-hover:text-cuban-gold transition-colors pr-2">
-                {(player.statistics.winRate * 100).toFixed(1)}%
+                {((player.statistics?.winRate || 0) * 100).toFixed(1)}%
               </div>
             </div>
           ))}

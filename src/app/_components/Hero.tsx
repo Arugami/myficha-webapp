@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { ArrowRight, Users, Trophy } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { Button } from '@/app/_components/ui/button';
 import Link from 'next/link';
 
 export const Hero = () => {

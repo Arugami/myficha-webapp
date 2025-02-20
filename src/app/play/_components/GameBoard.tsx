@@ -1,71 +1,58 @@
 'use client';
 
 import React from 'react';
-import { DominoTile as DominoTileType, Position } from '@/types/game';
+import { DominoTile as DominoTileType, Position, PlacedTile } from '@/types/game/core';
 import DominoTile from './DominoTile';
 
-interface PlacedTile extends DominoTileType {
-  position: Position;
-}
+interface GameBoardProps {}
 
-interface GameBoardProps {
-  playedTiles: PlacedTile[];
-  onTilePlaced?: (tile: DominoTileType, position: Position) => void;
-  validMoves?: Position[];
-  selectedTile?: DominoTileType | null;
-  isCurrentPlayerTurn?: boolean;
-}
+const GameBoard: React.FC<GameBoardProps> = () => {
+  const [tiles, setTiles] = React.useState<PlacedTile[]>([]);
+  const [selectedTile, setSelectedTile] = React.useState<DominoTileType | null>(null);
+  const [validMoves, setValidMoves] = React.useState<Position[]>([]);
+  const isCurrentPlayerTurn = true; // TODO: Get from game state
 
-const GameBoard: React.FC<GameBoardProps> = ({
-  playedTiles = [],
-  onTilePlaced,
-  validMoves = [],
-  selectedTile,
-  isCurrentPlayerTurn = false
-}) => {
-  // Handle tile placement
+  console.log('Rendering GameBoard with tiles:', tiles);
+
+  // TODO: Connect to game state to get actual board state
   const handleTilePlacement = (position: Position) => {
-    if (!onTilePlaced || !selectedTile || !isCurrentPlayerTurn) return;
-    onTilePlaced(selectedTile, position);
+    console.log('Tile placed at position:', position);
   };
 
+
   // Calculate position styles for a tile or highlight
-  const getPositionStyles = (position: Position, isHighlight: boolean = false) => {
+  const getPositionStyles = (position: Position, isHighlight: boolean = false): React.CSSProperties => {
     const tileWidth = 128; // Width of a horizontal domino
     const tileHeight = 64; // Height of a horizontal domino
     const isVertical = position.rotation === 90 || position.rotation === 270;
     
-    // Calculate the center offset based on tile dimensions
-    const centerX = position.x * (tileWidth / 2);
-    const centerY = position.y * (tileHeight / 2);
-
     // For highlights, we want them slightly larger
-    const width = isHighlight 
-      ? (isVertical ? tileHeight + 8 : tileWidth + 8)
-      : (isVertical ? tileHeight : tileWidth);
-    const height = isHighlight
-      ? (isVertical ? tileWidth + 8 : tileHeight + 8)
-      : (isVertical ? tileWidth : tileHeight);
+    const width = isVertical ? tileHeight : tileWidth;
+    const height = isVertical ? tileWidth : tileHeight;
+    const padding = isHighlight ? 4 : 0;
 
     return {
-      left: `calc(50% + ${centerX - (width / 2)}px)`,
-      top: `calc(50% + ${centerY - (height / 2)}px)`,
-      width: `${width}px`,
-      height: `${height}px`,
+      position: 'absolute',
+      left: `${position.x - (width / 2) - padding}px`,
+      top: `${position.y - (height / 2) - padding}px`,
+      width: `${width + (padding * 2)}px`,
+      height: `${height + (padding * 2)}px`,
       transform: `rotate(${position.rotation}deg)`,
       transformOrigin: 'center'
     };
   };
 
-  console.log('Rendering GameBoard with tiles:', playedTiles);
+  console.log('Rendering GameBoard with tiles:', tiles);
 
   return (
-    <div className="relative w-full h-full bg-[#2A4B3C] rounded-lg overflow-hidden">
+    <div className="absolute inset-0 bg-[#2A4B3C] rounded-lg overflow-hidden">
       {/* Cuban-themed background pattern */}
       <div className="absolute inset-0 opacity-10 bg-[url('/patterns/havana.svg')]"></div>
       
       {/* Game board grid */}
-      <div className="relative w-full h-full min-h-[600px]">
+      <div className="absolute inset-0 flex items-center justify-center">
+        <div className="relative" style={{ width: '800px', height: '600px' }}>
+          <div className="absolute inset-0">
         {/* Highlight valid move positions */}
         {selectedTile && isCurrentPlayerTurn && validMoves.map((position, index) => (
           <div
@@ -77,18 +64,18 @@ const GameBoard: React.FC<GameBoardProps> = ({
         ))}
 
         {/* Render placed tiles */}
-        {playedTiles.map((tile) => {
+        {tiles.map((tile) => {
           console.log('Rendering tile:', tile);
           const isVertical = tile.position.rotation === 90 || tile.position.rotation === 270;
           return (
             <div
-              key={`tile-${tile.id}`}
+              key={`tile-${tile.tile.id}`}
               className="absolute transition-all duration-300"
               style={getPositionStyles(tile.position)}
             >
               <DominoTile
-                topValue={tile.top}
-                bottomValue={tile.bottom}
+                topValue={tile.tile.top}
+                bottomValue={tile.tile.bottom}
                 isVertical={isVertical}
                 isPlayable={false}
               />
@@ -97,13 +84,15 @@ const GameBoard: React.FC<GameBoardProps> = ({
         })}
 
         {/* Center position indicator (only show if no tiles placed) */}
-        {playedTiles.length === 0 && (
+        {tiles.length === 0 && (
           <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-16 bg-white/20 rounded border-2 border-dashed border-white/30">
             <div className="w-full h-full flex items-center justify-center text-white/50">
               Start
             </div>
           </div>
         )}
+          </div>
+        </div>
       </div>
 
       {/* Player indicators */}

@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useCallback } from 'react';
-import { GameState, GameMode, Player, Team, DominoTile, Position, GameActionType } from '@/types/game';
+import { GameState, GameMode, GamePlayer, Team, DominoTile, Position, GameActionType } from '@/types/game/core';
 import { initializeGame } from '@/lib/game/initialization';
 
 export const useGameState = () => {
@@ -9,7 +9,7 @@ export const useGameState = () => {
 
   const startNewGame = useCallback((
     mode: GameMode,
-    players: Player[],
+    players: GamePlayer[],
     teams?: [Team, Team]
   ) => {
     // Initialize the game

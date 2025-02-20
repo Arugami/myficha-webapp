@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { Bell, Calendar, Wrench } from 'lucide-react';
-import { ScrollArea } from '@/components/ui/scroll-area';
+import { ScrollArea } from '@/app/_components/ui/scroll-area';
 
 interface Update {
   id: string;

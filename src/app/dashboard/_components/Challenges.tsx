@@ -1,21 +1,21 @@
 import React, { useState } from 'react';
 import { Trophy, Clock, Info } from 'lucide-react';
-import { Progress } from '@/components/ui/progress';
-import type { Challenge } from '@/types/dashboard';
+import { Progress } from '@/app/_components/ui/progress';
+import type { Challenge } from '@/types';
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
   DialogDescription,
-} from "@/components/ui/dialog";
-import { Button } from '@/components/ui/button';
+} from "@/app/_components/ui/dialog";
+import { Button } from '@/app/_components/ui/button';
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "@/components/ui/tooltip";
+} from "@/app/_components/ui/tooltip";
 
 const mockChallenges: Challenge[] = [
   {

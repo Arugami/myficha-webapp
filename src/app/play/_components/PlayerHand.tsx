@@ -2,23 +2,40 @@
 
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { DominoTile as DominoTileType } from '@/types/game';
+import { DominoTile as DominoTileType } from '@/types/game/core';
 import DominoTile from './DominoTile';
-import { Card } from "@/components/ui/card";
+import { Card } from "@/app/_components/ui/card";
 
 interface PlayerHandProps {
-  tiles: DominoTileType[];
-  isDealing: boolean;
-  isCurrentTurn: boolean;
-  onTileSelect: (tile: DominoTileType) => void;
+  playerId: string;
 }
 
-const PlayerHand: React.FC<PlayerHandProps> = ({
-  tiles,
-  isDealing,
-  isCurrentTurn,
-  onTileSelect,
-}) => {
+const PlayerHand: React.FC<PlayerHandProps> = ({ playerId }) => {
+  // Sample tiles for testing
+  // Sample hand of 10 tiles for testing
+  const tiles: DominoTileType[] = [
+    { id: 't1', top: 9, bottom: 9, isDouble: true },
+    { id: 't2', top: 9, bottom: 8, isDouble: false },
+    { id: 't3', top: 8, bottom: 8, isDouble: true },
+    { id: 't4', top: 8, bottom: 7, isDouble: false },
+    { id: 't5', top: 7, bottom: 7, isDouble: true },
+    { id: 't6', top: 7, bottom: 6, isDouble: false },
+    { id: 't7', top: 6, bottom: 6, isDouble: true },
+    { id: 't8', top: 6, bottom: 5, isDouble: false },
+    { id: 't9', top: 5, bottom: 5, isDouble: true },
+    { id: 't10', top: 5, bottom: 4, isDouble: false },
+  ];
+  const isDealing = false;
+  const isCurrentTurn = true;
+
+  const [selectedTile, setSelectedTile] = React.useState<DominoTileType | null>(null);
+
+  const handleTileSelect = (tile: DominoTileType) => {
+    if (isCurrentTurn) {
+      setSelectedTile(selectedTile?.id === tile.id ? null : tile);
+      console.log('Selected tile:', tile);
+    }
+  };
   const containerVariants = {
     hidden: {},
     show: {
@@ -85,7 +102,8 @@ const PlayerHand: React.FC<PlayerHandProps> = ({
                       topValue={domino.top}
                       bottomValue={domino.bottom}
                       isPlayable={isPlayable}
-                      onClick={() => isPlayable && onTileSelect(domino)}
+                      onClick={() => handleTileSelect(domino)}
+                      isSelected={selectedTile?.id === domino.id}
                     />
                   </motion.div>
                 );

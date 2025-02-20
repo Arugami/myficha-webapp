@@ -5,8 +5,8 @@ import {
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "@/components/ui/tooltip";
-import { Progress } from '@/components/ui/progress';
+} from "@/app/_components/ui/tooltip";
+import { Progress } from '@/app/_components/ui/progress';
 
 interface RankProgressProps {
   cdsScore: number;

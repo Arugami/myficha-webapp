@@ -3,7 +3,7 @@
 import React from 'react';
 import { Trophy, Star, Award, Zap, ChevronRight } from 'lucide-react';
 import Link from 'next/link';
-import type { PlayerStatistics } from '@/types/dashboard';
+import type { PlayerStatistics } from '@/types';
 import { CircularProgress } from './PlayerStats/CircularProgress';
 import { StatCard } from './PlayerStats/StatCard';
 
