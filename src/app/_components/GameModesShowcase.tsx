@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { Users, Trophy, Target, Gamepad, Calendar } from 'lucide-react';
-import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
+import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/app/_components/ui/tabs';
 
 interface GameMode {
   id: string;
@@ -63,7 +63,12 @@ const gameModes: GameMode[] = [
   }
 ];
 
-export const GameModesShowcase = () => {
+interface GameModesShowcaseProps {
+  activeMode: number;
+  onModeChange: (index: number) => void;
+}
+
+export const GameModesShowcase: React.FC<GameModesShowcaseProps> = ({ activeMode, onModeChange }) => {
   return (
     <section className="px-4 py-24 bg-gradient-to-b from-cuban-navy to-black">
       <div className="container mx-auto">

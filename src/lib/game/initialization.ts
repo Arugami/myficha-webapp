@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from 'uuid';
-import { GameState, GameMode, Player, Team, DominoTile } from '@/types/game';
+import { GameState, GameMode, GamePlayer, Team, DominoTile } from '@/types/game/core';
 
 // Generate all possible tiles for a double-nine set
 export const generateDominoSet = (): DominoTile[] => {
@@ -38,7 +38,7 @@ export const shouldReshuffle = (hand: DominoTile[]): boolean => {
 // Distribute tiles to players
 export const distributeTiles = (
   shuffledTiles: DominoTile[],
-  players: Player[]
+  players: GamePlayer[]
 ): { playerHands: Record<string, DominoTile[]>; remainingTiles: DominoTile[] } => {
   const playerHands: Record<string, DominoTile[]> = {};
   let currentIndex = 0;
@@ -59,7 +59,7 @@ export const distributeTiles = (
 // Initialize a new game
 export const initializeGame = (
   mode: GameMode,
-  players: Player[],
+  players: GamePlayer[],
   teams?: [Team, Team]
 ): GameState => {
   // Generate a unique game ID
@@ -107,7 +107,9 @@ export const initializeGame = (
     roundStartPlayer: startingPlayerId,
     remainingTiles: distribution.remainingTiles,
     playedTiles: [], // Initialize empty array for played tiles
-    roundNumber: 1,
+    board: [],
+    scores: { A: 0, B: 0 },
+    round: 1,
     lastAction: {
       type: 'starting',
       playerId: startingPlayerId,
@@ -119,7 +121,7 @@ export const initializeGame = (
 
 // Determine starting player by highest tile draw
 export const determineStartingPlayer = (
-  players: Player[],
+  players: GamePlayer[],
   remainingTiles: DominoTile[]
 ): { playerId: string; drawnTiles: Record<string, DominoTile> } => {
   const shuffled = shuffleTiles(remainingTiles);

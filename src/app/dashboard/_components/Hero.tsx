@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import type { Player, Match } from '@/types/dashboard';
+import type { Player, Match } from '@/types';
 import { RankDisplay } from './Hero/RankDisplay';
 import { CDSScoreDisplay } from './Hero/CDSScoreDisplay';
 import { WinRatioDisplay } from './Hero/WinRatioDisplay';
@@ -44,19 +44,19 @@ export const Hero: React.FC<HeroProps> = ({ playerStats, recentMatches, isLoadin
     <div className="bg-gradient-to-r from-cuban.navy to-cuban.coral rounded-lg mx-8 animate-fadeIn shadow-lg shadow-black/5">
       <div className="space-y-8 p-8">
         <h1 className="text-xl md:text-2xl lg:text-3xl font-medium text-white/90">
-          {greeting}, <span className="font-inter font-semibold tracking-tight">{playerStats.username || 'Player'}</span>
+          {greeting}, <span className="font-inter font-semibold tracking-tight">{playerStats?.username || 'Player'}</span>
         </h1>
         
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          <RankDisplay cdsScore={playerStats.cdsScore} rank={playerStats.rank} />
-          <CDSScoreDisplay score={playerStats.cdsScore} />
+          <RankDisplay cdsScore={playerStats?.cdsScore ?? 0} rank={playerStats?.rank ?? 0} />
+          <CDSScoreDisplay score={playerStats?.cdsScore ?? 0} />
           <WinRatioDisplay 
-            winRate={playerStats.statistics?.winRate ?? 0}
-            totalMatches={playerStats.statistics?.totalMatches ?? 0}
+            winRate={playerStats?.statistics?.winRate ?? 0}
+            totalMatches={playerStats?.statistics?.totalMatches ?? 0}
           />
         </div>
 
-        <RankProgress cdsScore={playerStats.cdsScore} />
+        <RankProgress cdsScore={playerStats?.cdsScore ?? 0} />
       </div>
     </div>
   );

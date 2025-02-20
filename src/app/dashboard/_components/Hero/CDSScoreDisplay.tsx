@@ -8,8 +8,8 @@ import {
   DialogHeader,
   DialogTitle,
   DialogDescription,
-} from "@/components/ui/dialog";
-import { Progress } from "@/components/ui/progress";
+} from "@/app/_components/ui/dialog";
+import { Progress } from "@/app/_components/ui/progress";
 import Link from 'next/link';
 
 interface CDSScoreDisplayProps {

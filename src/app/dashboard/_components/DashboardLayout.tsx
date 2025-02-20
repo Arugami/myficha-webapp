@@ -21,7 +21,7 @@ export const DashboardLayout: React.FC = () => {
       <div className="max-w-[1600px] mx-auto py-6 animate-pulse">
         <div className="space-y-10">
           <PlayerProfileSnapshot isLoading={true} />
-          <Hero isLoading={true} playerStats={null} recentMatches={[]} />
+          <Hero isLoading={true} playerStats={undefined} recentMatches={[]} />
           <PlayerStats isLoading={true} />
           <RecentMatches isLoading={true} />
           <QuickActionBar />
