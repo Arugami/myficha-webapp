@@ -6,11 +6,9 @@ import { DominoTile as DominoTileType } from '@/types/game/core';
 import DominoTile from './DominoTile';
 import { Card } from "@/app/_components/ui/card";
 
-interface PlayerHandProps {
-  playerId: string;
-}
+interface PlayerHandProps {}
 
-const PlayerHand: React.FC<PlayerHandProps> = ({ playerId }) => {
+const PlayerHand: React.FC<PlayerHandProps> = () => {
   // Sample tiles for testing
   // Sample hand of 10 tiles for testing
   const tiles: DominoTileType[] = [

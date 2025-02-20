@@ -7,9 +7,9 @@ import DominoTile from './DominoTile';
 interface GameBoardProps {}
 
 const GameBoard: React.FC<GameBoardProps> = () => {
-  const [tiles, setTiles] = React.useState<PlacedTile[]>([]);
-  const [selectedTile, setSelectedTile] = React.useState<DominoTileType | null>(null);
-  const [validMoves, setValidMoves] = React.useState<Position[]>([]);
+  const [tiles] = React.useState<PlacedTile[]>([]);
+  const [selectedTile] = React.useState<DominoTileType | null>(null);
+  const [validMoves] = React.useState<Position[]>([]);
   const isCurrentPlayerTurn = true; // TODO: Get from game state
 
   console.log('Rendering GameBoard with tiles:', tiles);

@@ -4,7 +4,7 @@ import React from 'react';
 import { ChevronRight } from 'lucide-react';
 import Link from 'next/link';
 import type { Player } from '@/types';
-import { PlayerCard } from '@/app/dashboard/_components/leaderboard/PlayerCard';
+import { PlayerCard } from '@/app/dashboard/_components/Leaderboard/PlayerCard';
 
 interface LeaderboardHighlightsProps {
   players: Player[];

@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState } from 'react';
 import { formatDistanceToNow, subDays, isAfter, format } from 'date-fns';
 import { UserRound } from 'lucide-react';
@@ -15,8 +17,8 @@ interface NotificationItemProps {
     avatarUrl?: string;
     read: boolean;
   };
-  onAccept: (e: React.MouseEvent, notification: any) => void;
-  onDecline: (e: React.MouseEvent, notification: any) => void;
+  onAccept: (e: React.MouseEvent, notification: NotificationItemProps['notification']) => void;
+  onDecline: (e: React.MouseEvent, notification: NotificationItemProps['notification']) => void;
 }
 
 const formatNotificationTime = (timestamp: string | Date) => {

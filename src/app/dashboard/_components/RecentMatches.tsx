@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { ChevronDown } from 'lucide-react';
-import Link from 'next/link';
+
 import { useRouter } from 'next/navigation';
 import type { Match, Player } from '@/types';
 import { MatchCard } from '@/app/(game)/history/_components/matches/MatchCard';

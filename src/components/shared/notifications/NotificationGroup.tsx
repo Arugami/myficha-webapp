@@ -1,6 +1,6 @@
 import React from 'react';
 import { MessageSquare, Users, Gamepad } from 'lucide-react';
-import { ClientNotificationItem } from './ClientNotificationItem';
+import { NotificationItem } from './NotificationItem';
 
 interface NotificationGroupProps {
   type: string;
@@ -53,7 +53,7 @@ export const NotificationGroup: React.FC<NotificationGroupProps> = ({
       </div>
       <div className="bg-white/[0.02]">
         {notifications.map((notification) => (
-          <ClientNotificationItem
+          <NotificationItem
             key={notification.id}
             notification={notification}
             onAccept={onAccept}

@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import { Crown } from 'lucide-react';
 import type { Player } from '@/types';
-import { cn } from '@/lib/utils';
+
 
 interface PlayerCardProps {
   player: Player;

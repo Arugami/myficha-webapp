@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Users, Trophy, Target, Gamepad, Calendar } from 'lucide-react';
+import { Users, Trophy, Target } from 'lucide-react';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/app/_components/ui/tabs';
 
 interface GameMode {
@@ -68,7 +68,7 @@ interface GameModesShowcaseProps {
   onModeChange: (index: number) => void;
 }
 
-export const GameModesShowcase: React.FC<GameModesShowcaseProps> = ({ activeMode, onModeChange }) => {
+export const GameModesShowcase: React.FC<GameModesShowcaseProps> = () => {
   return (
     <section className="px-4 py-24 bg-gradient-to-b from-cuban-navy to-black">
       <div className="container mx-auto">

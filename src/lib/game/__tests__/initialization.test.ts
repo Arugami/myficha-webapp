@@ -7,7 +7,7 @@ import {
   initializeGame,
   determineStartingPlayer
 } from '../initialization';
-import { DominoTile, Player, Team, GameMode } from '@/types/game/core/core';
+import { DominoTile, Player, Team } from '@/types/game/core/core';
 
 describe('Game Initialization', () => {
   describe('generateDominoSet', () => {

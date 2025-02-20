@@ -4,10 +4,10 @@ import { useState } from 'react';
 import { GameBoard } from './_components/GameBoard';
 import { GameSidebar } from './_components/GameSidebar';
 import { PlayerHand } from './_components/PlayerHand';
-import { GameState, GamePlayer } from '@/types/game/core';
+import { GameState } from '@/types/game/core';
 
 export default function PlayPage() {
-  const [isDealing, setIsDealing] = useState(false);
+  const [isDealing] = useState(false);
   const [gameState, setGameState] = useState<GameState>({
     id: 'test-game',
     mode: 'classic',
